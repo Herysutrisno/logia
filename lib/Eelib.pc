@@ -1,0 +1,11 @@
+prefix=/home/herry/Devel/lib/lib
+exec_prefix=${prefix}
+libdir=${exec_prefix}
+includedir=${prefix}
+
+Name: standard Eelib
+Description: UC standard library
+Version:unknown
+Libs: -L${libdir} -lEe
+Cflags: -I${includedir} 
+

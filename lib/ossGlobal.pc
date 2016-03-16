@@ -1,0 +1,11 @@
+prefix=/home/herry/Devel/lib/ossGlobal
+exec_prefix=${prefix}
+libdir=${prefix}
+includedir=${prefix}
+
+Name: ossGlobal Novalka
+Description:test test test
+Version: unknown
+Libs: -L${libdir} -lasn1code -liaapi
+
+Cflags: -I${includedir} -pthread
