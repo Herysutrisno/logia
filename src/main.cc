@@ -26,6 +26,8 @@ int main(int argc, char* argv[]){
 	//comment4
 	//comment5
 	//comment6
+	//comment7
+	//comment8
     std::string str = logia::setFormatTime(logia::currentSystemTime(),"test time %Y-%m-%d %H:%M:%S");
     std::cout<<"time: "<<str<<":"<<millisec<<std::endl;   
  
