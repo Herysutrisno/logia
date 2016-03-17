@@ -22,7 +22,7 @@ COMPILE_FLAGS = -m64 -fdiagnostics-color -Wall -pedantic -D_REENTRANT \
 			    -Wmissing-include-dirs -Werror \
 				-Wno-unused
 # Additional release-specific flags
-RCOMPILE_FLAGS = -D NDEBUG
+RCOMPILE_FLAGS = -D NDEBUG -D NODEBUG
 # Additional debug-specific flags
 DCOMPILE_FLAGS = -g3 
 # Add additional include paths

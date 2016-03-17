@@ -7,6 +7,8 @@
 #include <time.h>
 #include <sys/time.h>
 #include <math.h>
+
+#include "core_error.h"
 int main(int argc, char* argv[]){
     struct timeval tv;
     int millisec=0;
@@ -19,18 +21,29 @@ int main(int argc, char* argv[]){
 	    tv.tv_sec++;
 	}
 
-
     //comment	
-    //comment2
-	//comment3
-	//comment4
-	//comment5
-	//comment6
-	//comment7
-	//comment8
     std::string str = logia::setFormatTime(logia::currentSystemTime(),"test time %Y-%m-%d %H:%M:%S");
     std::cout<<"time: "<<str<<":"<<millisec<<std::endl;   
- 
+
+    
+	//test assertion error
+	//int var_error = -1;
+	//core_assert(var_error);
+	
+	//FILE* pfile;
+	//pfile = fopen("unexist.ent","r");
+	//if(pfile == NULL)
+        //core_errno(NULL);
+
+    //error option return  can be 1-n,if 0 mean is success 
+    //posix_assert(var_error);   
+
+    //error option return from -1->(-n),if 0 is success 
+    //gai_assert(var_error);
+	
+	//error if 0, if not 0 is success
+    //heap_assert(var_error);
+    printf("success no error\n");  
     return 0;
 
 }
