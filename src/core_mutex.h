@@ -70,7 +70,7 @@ namespace CORE
 			
 			}
 
-			inline const pthread_mutex_t* get_mutex()
+			inline const pthread_mutex_t* get_mutex() const
 			{
 			    return &_mutex;
 			}
