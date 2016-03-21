@@ -1,72 +1,41 @@
 #ifndef LOGIA_ACTIVEOBJ_H
 #define LOGIA_ACTIVEOBJ_H
 
+
 #include "core_thread.h"
 #include "logia_queue.h"
-
+#include "logia_active_callback.h"
 
 
 namespace logia
 {
-    typedef std::function<void()> _callback;
-
-
-	class Activeobj
+    typedef logia::Queue<logia::CallBack*> QueueCallback; 
+	class ActiveObj
 	{
 	    
 		public:
-		    virtual ~Activeobj()
-			{
-			    send([this] {_done = true});
-				_thread.stopApps();
-			}
-
-			void send(_callback message)
-			{
-			    _queue.push(message);
-			}
-
-			void start_activeobj()
-			{
-			    _thread.startApps(&run,this);
-			}
-
-			static Activeobj* create_self()
-			{
-			    Activeobj* active_ptr = new Activeobj;
-				active_ptr.start_activeobj();
-				return active_ptr;
-			}
+		    virtual ~ActiveObj();
+			void is_send(CallBack* callback_msg);
+			static logia::ActiveObj* create_activeobj();
+            
 		private:
-		    bool _done;
-            logia::Queue<_callback> _queue;
-			logia::Thread _thread;
-		    Activeobj(): _done(false)
+		   	QueueCallback _que_callback;
+			core::Thread _thread;
+            bool _done;
+            void run();
+			static void run_thread(void* args);
+
+		    ActiveObj();
+			void is_done()
 			{
+			    _done = true;
 			}
 
-			Activeobj(const Activeobj&);
-			Activeobj& operator=(const Activeobj&);
+			ActiveObj(const ActiveObj&);
+			ActiveObj& operator=(const ActiveObj&);
+			core::Thread* get_thread(); 
 
-			void run()
-			{
-			    while(!_done)
-				{
-				    _callback function;
-					_queue.pop_wait(function);
-					function();
-
-				}
-			
-			}
-
-
-
-
-	
-	}
-
-
+	};
 
 }
 

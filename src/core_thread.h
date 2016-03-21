@@ -19,9 +19,13 @@ namespace core
 
 			void stopApps();
 
+			void thread_exit();
+
 			void setPriority(int priority, int scheduling_policy);
-            
-            fptr* _internal_thd;
+           
+		    void yield();            
+           
+		    fptr* _internal_thd;
 			
 			void* _argument;
 

@@ -7,8 +7,8 @@
 #include "core_error.h"
 
 #define CLOCK_REALTIME 0
-int clock_gettime(int clock_id, timespec* ts);
-namespace CORE
+//int clock_gettime(int clock_id, timespec* ts);
+namespace core
 {
 
     class Mutex
@@ -73,7 +73,7 @@ namespace CORE
 			
 			}
 
-			inline pthread_mutex_t* get_mutex() const
+			inline const pthread_mutex_t* get_mutex() const
 			{
 			    return &_mutex;
 			}

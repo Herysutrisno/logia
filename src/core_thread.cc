@@ -5,13 +5,14 @@
 #include <unistd.h>
 namespace core
 {
-
+extern "C"
+{
     static void* thread_routine(void* args)
 	{
 	    /*###
         block all SIGNALS in thread
 		###*/
-	    int success = 0;
+	    int success;
 	    sigset_t signal_set;
 		success = sigfillset(&signal_set);
         core_errno(success == 0);
@@ -23,27 +24,40 @@ namespace core
         
 		return 0;
 	}
-
-	void core::Thread::startApps(fptr* internal_thd, void* arg)
+}
+	void Thread::startApps(fptr* internal_thd, void* arg)
 	{
 	    _internal_thd = internal_thd;
 		_argument = arg;
-		int success = 0;
+		int success;
 		success = pthread_create(&_mainthread, 0, thread_routine, this);
 		posix_assert(success);
 	
 	}
 
-	void core::Thread::stopApps()
+	void Thread::stopApps()
 	{
-	    int success = 0;
+	    int success;
 		success = pthread_join(_mainthread, 0);
 		posix_assert(success);
 	
 	}
 
+	void Thread::yield()
+	{
+	    int success;
+		success = pthread_yield();
+		posix_assert(success);
+	
+	}
 
-    void core::Thread::setPriority(int priority, int scheduling_policy)
+	void Thread::thread_exit()
+	{
+	    pthread_exit(NULL);
+	}
+
+
+    void Thread::setPriority(int priority, int scheduling_policy)
     {
         #if defined _POSIX_THREAD_PRIORITY_SCHEDULING && _POSIX_THREAD_PRIORITY_SCHEDULING >= 0
 		    int policy = 0;
@@ -55,7 +69,7 @@ namespace core
 			
 		#endif
 
-		int success = 0 ;
+		int success;
 		success = pthread_getschedparam(_mainthread, &policy, &param);
 		posix_assert(success);
 

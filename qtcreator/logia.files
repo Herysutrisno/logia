@@ -1,0 +1,13 @@
+../src/core_error.cc
+../src/core_error.h
+../src/core_mutex.cc
+../src/core_mutex.h
+../src/core_thread.cc
+../src/core_thread.h
+../src/logia_active_callback.h
+../src/logia_activeobj.cc
+../src/logia_activeobj.h
+../src/logia_queue.h
+../src/logia_time.cc
+../src/logia_time.h
+../src/main.cc
